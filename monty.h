@@ -1,5 +1,5 @@
-#ifndef MONTY_MONTY_H
-#define MONTY_MONTY_H
+#ifndef MONTY_H
+#define MONTY_H
 
 #include <stdio.h>
 #include <unistd.h>
@@ -17,7 +17,6 @@
  * Description: doubly linked list node structure
  * for stack, queues, LIFO, FIFO
  */
-
 typedef struct stack_s
 {
 	int n;
@@ -37,8 +36,8 @@ extern FILE *file;
 
 typedef struct instruction_s
 {
-		char *opcode;
-			void (*f)(stack_t **stack, unsigned int line_number);
+	char *opcode;
+	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
 /**
@@ -47,18 +46,21 @@ typedef struct instruction_s
  * Return: void
  */
 
-void (*get_instruction_func(const char *s))(stack_t **stack,
+void (*get_instruction_func(const char *s))(stack_t **stack, 
 		unsigned int ln);
+
 void process_lines(char **opcodes, stack_t **stack, int supported_opcodes);
 void process_opcode(char *l, int ln, int i, int j, char **opcodes, stack_t
-		**stack);
+**stack);
+
+
 stack_t *add_dnodeint(stack_t **stack, int n);
 size_t print_dlistint(const stack_t *stack);
 void free_dlistint(stack_t *head);
 int delete_dnodeint_at_index(stack_t **head, unsigned int index);
 stack_t *add_dnodeint_end(stack_t **head, int n);
 
-/**
+/*
  * Opcode functions
  * ln - stands for line number being processed when the opcode is called
  */
